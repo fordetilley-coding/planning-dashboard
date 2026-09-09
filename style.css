@@ -1,54 +1,30 @@
-/* =========================================================
-   PLANNING DASHBOARD DESIGN
-========================================================= */
+/* =========================
+   DESIGN
+========================= */
 
 :root {
-  --bg: #f6f7f9;
-  --surface: #ffffff;
-  --surface-hover: #f9fafb;
+  --bg: #f7f7f8;
+  --white: #ffffff;
 
-  --text: #111827;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --text: #18181b;
+  --muted: #71717a;
+  --border: #e4e4e7;
 
-  --border: #e5e7eb;
-  --border-light: #f0f1f3;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
 
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-soft: #eff6ff;
+  --red: #dc2626;
 
-  --danger: #dc2626;
-  --danger-soft: #fef2f2;
-
-  --success: #16a34a;
-  --success-soft: #f0fdf4;
-
-  --warning: #d97706;
-  --warning-soft: #fffbeb;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-
-  --shadow-sm:
-    0 1px 2px rgba(0, 0, 0, 0.04);
-
-  --shadow-md:
-    0 4px 14px rgba(0, 0, 0, 0.06);
+  --radius: 10px;
 }
 
 
-/* =========================================================
+/* =========================
    RESET
-========================================================= */
+========================= */
 
 * {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -78,158 +54,110 @@ button {
   cursor: pointer;
 }
 
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
 }
 
 
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 header {
-  background: var(--surface);
+  background: var(--white);
   border-bottom: 1px solid var(--border);
-}
 
-header .container {
-  margin-top: 0;
-  margin-bottom: 0;
+  padding: 24px 0;
 }
 
 header h1 {
   margin: 0;
 
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-
-  letter-spacing: -0.6px;
+  letter-spacing: -0.4px;
 }
 
 header p {
-  margin: 4px 0 0;
+  margin: 3px 0 0;
 
-  color: var(--text-secondary);
-
-  font-size: 14px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-  width: min(1200px, calc(100% - 40px));
-  margin: 32px auto;
-}
-
-
-/* =========================================================
-   TOP NAVIGATION
-========================================================= */
+/* =========================
+   NAVIGATION
+========================= */
 
 .main-navigation {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  gap: 16px;
+  margin: 24px 0;
 
-  margin-bottom: 24px;
+  padding-bottom: 12px;
 
-  padding: 6px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-
-  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav-links {
   display: flex;
-  align-items: center;
-
-  gap: 2px;
-
-  min-width: 0;
+  gap: 4px;
 }
 
 .nav-button {
-  border: none;
-  border-radius: 7px;
-
+  border: 0;
   background: transparent;
-  color: var(--text-secondary);
+
+  color: var(--muted);
+
+  padding: 7px 10px;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+}
+
+.nav-button:hover {
+  color: var(--text);
+  background: #f0f0f1;
+}
+
+.nav-button.active {
+  color: var(--blue);
+  background: var(--blue-light);
+  font-weight: 600;
+}
+
+.quick-add-button {
+  border: 0;
+  border-radius: 6px;
+
+  background: var(--blue);
+  color: white;
 
   padding: 8px 12px;
 
   font-size: 13px;
-  font-weight: 500;
-
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-
-.nav-button:hover {
-  background: var(--surface-hover);
-  color: var(--text);
-}
-
-.nav-button.active {
-  background: var(--accent-soft);
-  color: var(--accent);
   font-weight: 600;
-}
-
-
-/* =========================================================
-   QUICK ADD
-========================================================= */
-
-.quick-add-button {
-  flex-shrink: 0;
-
-  border: none;
-  border-radius: var(--radius-sm);
-
-  background: var(--accent);
-  color: white;
-
-  padding: 9px 14px;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  transition:
-    background 0.15s,
-    transform 0.1s;
 }
 
 .quick-add-button:hover {
-  background: var(--accent-hover);
-}
-
-.quick-add-button:active {
-  transform: translateY(1px);
+  background: #1d4ed8;
 }
 
 
-/* =========================================================
+/* =========================
    VIEWS
-========================================================= */
+========================= */
 
 .app-view {
   display: none;
@@ -240,118 +168,86 @@ header p {
 }
 
 
-/* =========================================================
-   DASHBOARD LAYOUT
-========================================================= */
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard {
   display: grid;
 
-  grid-template-columns:
-    minmax(0, 1.6fr)
-    minmax(320px, 1fr);
+  grid-template-columns: 1.5fr 1fr;
 
-  gap: 20px;
-
-  align-items: start;
-}
-
-.dashboard-full {
-  grid-column: 1 / -1;
+  gap: 16px;
 }
 
 
-/* =========================================================
-   DASHBOARD STATISTICS
-========================================================= */
+/* =========================
+   STATISTICS
+========================= */
 
 .dashboard-stats {
   display: grid;
 
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+    repeat(4, 1fr);
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .stat-card {
-  min-width: 0;
-
-  padding: 18px;
-
-  background: var(--surface);
+  background: var(--white);
 
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius);
 
-  box-shadow: var(--shadow-sm);
+  padding: 16px;
 }
 
 .stat-label {
-  margin-bottom: 6px;
-
-  color: var(--text-secondary);
+  color: var(--muted);
 
   font-size: 12px;
-  font-weight: 500;
 }
 
 .stat-value {
-  color: var(--text);
+  margin-top: 4px;
 
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-
-  line-height: 1.1;
-
-  letter-spacing: -0.5px;
 }
 
 
-/* =========================================================
+/* =========================
    CARDS
-========================================================= */
+========================= */
 
 .card {
-  background: var(--surface);
+  background: var(--white);
 
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
 
-  padding: 22px;
-
-  box-shadow: var(--shadow-sm);
+  padding: 20px;
 }
 
 .card h2 {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 650;
-
-  letter-spacing: -0.2px;
-}
-
-.card h3 {
-  margin: 0;
-
-  font-size: 15px;
-  font-weight: 600;
 }
 
 
-/* =========================================================
-   SECTION HEADERS
-========================================================= */
+/* =========================
+   SECTION HEADER
+========================= */
 
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  gap: 12px;
 
   margin-bottom: 16px;
 }
@@ -361,42 +257,46 @@ header p {
 }
 
 .section-action {
-  border: none;
-  background: transparent;
+  border: 0;
+  background: none;
 
-  color: var(--accent);
-
-  padding: 4px 0;
+  color: var(--blue);
 
   font-size: 12px;
   font-weight: 600;
 }
 
-.section-action:hover {
-  color: var(--accent-hover);
-}
 
-
-/* =========================================================
+/* =========================
    FORMS
-========================================================= */
+========================= */
+
+.task-form {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    140px
+    110px;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
 
 .form-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
 
   gap: 12px;
-
-  margin-bottom: 14px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
 
-  gap: 6px;
+  gap: 5px;
 }
 
 .form-group.full-width {
@@ -404,43 +304,23 @@ header p {
 }
 
 .form-group label {
-  color: var(--text-secondary);
+  color: var(--muted);
 
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .form-actions {
   display: flex;
-  align-items: center;
-
   gap: 8px;
 
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 
-/* =========================================================
-   TASK FORM
-========================================================= */
-
-.task-form {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    150px
-    120px;
-
-  gap: 8px;
-
-  margin-bottom: 10px;
-}
-
-
-/* =========================================================
+/* =========================
    INPUTS
-========================================================= */
+========================= */
 
 input,
 select,
@@ -448,149 +328,100 @@ textarea {
   width: 100%;
 
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 7px;
 
-  background: var(--surface);
+  background: var(--white);
   color: var(--text);
 
-  padding: 10px 12px;
+  padding: 9px 10px;
 
-  transition:
-    border-color 0.15s,
-    box-shadow 0.15s,
-    background 0.15s;
-}
-
-input:hover,
-select:hover,
-textarea:hover {
-  border-color: #d1d5db;
+  outline: none;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--accent);
+  border-color: var(--blue);
 
   box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
-
-  outline: none;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-muted);
+    0 0 0 2px var(--blue-light);
 }
 
 textarea {
-  display: block;
-
-  min-height: 340px;
+  min-height: 300px;
 
   resize: vertical;
 
   line-height: 1.6;
+}
 
-  font-size: 14px;
+input::placeholder,
+textarea::placeholder {
+  color: #a1a1aa;
 }
 
 
-/* =========================================================
+/* =========================
    BUTTONS
-========================================================= */
+========================= */
 
 .primary-button {
-  border: none;
-  border-radius: var(--radius-sm);
+  border: 0;
+  border-radius: 7px;
 
-  background: var(--accent);
+  background: var(--blue);
   color: white;
 
-  padding: 10px 16px;
+  padding: 9px 14px;
 
   font-size: 13px;
   font-weight: 600;
-
-  transition:
-    background 0.15s,
-    transform 0.1s;
 }
 
 .primary-button:hover {
-  background: var(--accent-hover);
-}
-
-.primary-button:active {
-  transform: translateY(1px);
+  background: #1d4ed8;
 }
 
 .secondary-button {
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 7px;
 
-  background: var(--surface);
+  background: var(--white);
   color: var(--text);
 
   padding: 9px 14px;
 
   font-size: 13px;
-  font-weight: 600;
-
-  transition:
-    background 0.15s,
-    border-color 0.15s;
+  font-weight: 500;
 }
 
 .secondary-button:hover {
-  background: var(--surface-hover);
-  border-color: #d1d5db;
-}
-
-.danger-button {
-  border: 1px solid #fecaca;
-  border-radius: var(--radius-sm);
-
-  background: var(--danger-soft);
-  color: var(--danger);
-
-  padding: 9px 14px;
-
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.danger-button:hover {
-  background: #fee2e2;
+  background: #f4f4f5;
 }
 
 
-/* =========================================================
+/* =========================
    FILTERS
-========================================================= */
+========================= */
 
 .filters {
   display: flex;
+  gap: 2px;
 
-  gap: 4px;
-
-  margin: 24px 0 8px;
+  margin: 20px 0 4px;
 
   border-bottom: 1px solid var(--border);
 }
 
 .filter-button {
-  position: relative;
+  border: 0;
+  background: none;
 
-  border: none;
+  color: var(--muted);
 
-  background: transparent;
-  color: var(--text-secondary);
+  padding: 8px 10px;
 
-  padding: 9px 12px;
-
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
 }
 
 .filter-button:hover {
@@ -598,71 +429,43 @@ textarea {
 }
 
 .filter-button.active {
-  color: var(--text);
-}
+  color: var(--blue);
 
-.filter-button.active::after {
-  content: "";
+  border-bottom: 2px solid var(--blue);
 
-  position: absolute;
-
-  left: 12px;
-  right: 12px;
-  bottom: -1px;
-
-  height: 2px;
-
-  background: var(--accent);
-
-  border-radius: 2px;
+  font-weight: 600;
 }
 
 
-/* =========================================================
-   TASK
-========================================================= */
+/* =========================
+   TASKS
+========================= */
 
 .task {
   display: flex;
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  min-height: 64px;
+  min-height: 58px;
 
-  padding: 12px 4px;
+  padding: 10px 2px;
 
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border);
 }
 
 .task:last-child {
-  border-bottom: none;
+  border-bottom: 0;
 }
-
-.task:hover {
-  background: var(--surface-hover);
-}
-
-
-/* =========================================================
-   TASK CHECKBOX
-========================================================= */
 
 .task > input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-
-  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
 
   margin: 0;
 
-  accent-color: var(--accent);
+  accent-color: var(--blue);
 }
-
-
-/* =========================================================
-   TASK CONTENT
-========================================================= */
 
 .task-content {
   flex: 1;
@@ -672,10 +475,7 @@ textarea {
 .task-title {
   overflow: hidden;
 
-  color: var(--text);
-
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -683,256 +483,183 @@ textarea {
 
 .task-meta {
   display: flex;
-  align-items: center;
+  gap: 5px;
 
-  gap: 6px;
+  margin-top: 2px;
 
-  margin-top: 3px;
+  color: var(--muted);
 
-  color: var(--text-muted);
-
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .completed {
-  color: var(--text-muted);
+  color: var(--muted);
 
   text-decoration: line-through;
 }
 
 
-/* =========================================================
+/* =========================
    PRIORITY
-========================================================= */
+========================= */
 
 .priority {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 2px 6px;
-
-  border-radius: 5px;
-
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
 
   text-transform: uppercase;
-
-  letter-spacing: 0.3px;
-}
-
-.priority.high {
-  background: var(--danger-soft);
-  color: #b91c1c;
-}
-
-.priority.medium {
-  background: var(--warning-soft);
-  color: #b45309;
-}
-
-.priority.low {
-  background: var(--success-soft);
-  color: #15803d;
 }
 
 
-/* =========================================================
-   DELETE BUTTON
-========================================================= */
+/* =========================
+   DELETE
+========================= */
 
 .delete-button {
-  flex-shrink: 0;
+  border: 0;
+  background: none;
 
-  opacity: 0;
+  color: #a1a1aa;
 
-  border: none;
-  border-radius: 6px;
+  padding: 5px;
 
-  background: transparent;
-  color: var(--text-muted);
-
-  padding: 6px 8px;
-
-  font-size: 12px;
-
-  transition:
-    opacity 0.15s,
-    color 0.15s,
-    background 0.15s;
-}
-
-.task:hover .delete-button,
-.event:hover .delete-button,
-.reminder:hover .delete-button {
-  opacity: 1;
+  font-size: 11px;
 }
 
 .delete-button:hover {
-  background: var(--danger-soft);
-  color: var(--danger);
+  color: var(--red);
 }
 
 
-/* =========================================================
+/* =========================
    EVENTS
-========================================================= */
-
-.event-list,
-.reminder-list {
-  display: flex;
-  flex-direction: column;
-}
+========================= */
 
 .event {
   display: flex;
   align-items: flex-start;
 
-  gap: 16px;
+  gap: 12px;
 
-  padding: 14px 4px;
+  padding: 12px 2px;
 
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border);
 }
 
 .event:last-child {
-  border-bottom: none;
-}
-
-.event:hover {
-  background: var(--surface-hover);
+  border-bottom: 0;
 }
 
 .event-content {
   flex: 1;
-  min-width: 0;
 }
 
 .event-content h3 {
   margin: 0;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .event-meta {
-  margin-top: 3px;
+  margin-top: 2px;
 
-  color: var(--text-secondary);
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.event-content p {
+  margin: 5px 0 0;
+
+  color: var(--muted);
 
   font-size: 12px;
 }
 
-.event-content p {
-  margin: 7px 0 0;
 
-  color: var(--text-secondary);
-
-  font-size: 13px;
-}
-
-
-/* =========================================================
+/* =========================
    REMINDERS
-========================================================= */
+========================= */
 
 .reminder {
   display: flex;
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  min-height: 58px;
+  padding: 11px 2px;
 
-  padding: 10px 4px;
-
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border);
 }
 
 .reminder:last-child {
-  border-bottom: none;
-}
-
-.reminder:hover {
-  background: var(--surface-hover);
+  border-bottom: 0;
 }
 
 .reminder > input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-
-  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
 
   margin: 0;
 
-  accent-color: var(--accent);
+  accent-color: var(--blue);
 }
 
 .reminder-content {
   flex: 1;
-  min-width: 0;
 }
 
 .reminder-title {
-  overflow: hidden;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 13px;
 }
 
 .reminder-meta {
-  margin-top: 3px;
+  margin-top: 2px;
 
-  color: var(--text-muted);
+  color: var(--muted);
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
-/* =========================================================
+/* =========================
    NOTES
-========================================================= */
-
-.notes-container {
-  max-width: 900px;
-}
+========================= */
 
 .save-message {
-  margin-top: 8px;
+  margin-top: 6px;
 
-  color: var(--text-muted);
+  color: var(--muted);
 
   font-size: 11px;
 }
 
 .note-preview {
-  padding: 12px;
+  padding: 10px;
 
-  background: var(--surface-hover);
+  background: #fafafa;
 
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+
+  border-radius: 7px;
 }
 
 .note-preview p {
   margin: 0;
 
-  color: var(--text-secondary);
+  color: var(--muted);
 
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12px;
 }
 
 
-/* =========================================================
-   FORM CARDS
-========================================================= */
+/* =========================
+   FORM CARD
+========================= */
 
 .form-card {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form-card[hidden] {
@@ -940,63 +667,54 @@ textarea {
 }
 
 
-/* =========================================================
-   EMPTY STATES
-========================================================= */
+/* =========================
+   EMPTY STATE
+========================= */
 
-.empty,
 .empty-state {
-  padding: 36px 20px;
-
-  color: var(--text-muted);
+  padding: 32px 16px;
 
   text-align: center;
+
+  color: var(--muted);
 }
 
 .empty-state h3 {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
 
-  color: var(--text-secondary);
+  color: #52525b;
 
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
 }
 
 .empty-state p {
   margin: 0;
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer {
-  margin-top: 48px;
-  padding: 24px 0;
+  margin-top: 40px;
+  padding: 20px 0;
 
-  border-top: 1px solid var(--border);
-
-  color: var(--text-muted);
+  color: var(--muted);
 
   text-align: center;
 
-  font-size: 12px;
-}
-
-footer .container {
-  margin-top: 0;
-  margin-bottom: 0;
+  font-size: 11px;
 }
 
 
-/* =========================================================
-   RESPONSIVE — TABLET
-========================================================= */
+/* =========================
+   TABLET
+========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
   .dashboard {
     grid-template-columns: 1fr;
@@ -1004,57 +722,30 @@ footer .container {
 
   .dashboard-stats {
     grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .task-form {
-    grid-template-columns:
-      minmax(0, 1fr)
-      140px
-      110px;
+      repeat(2, 1fr);
   }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — MOBILE
-========================================================= */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 650px) {
-
-  header {
-    padding: 22px 0;
-  }
-
-  header h1 {
-    font-size: 22px;
-  }
+@media (max-width: 600px) {
 
   .container {
-    width: min(100% - 24px, 700px);
-
-    margin: 20px auto;
+    width: calc(100% - 24px);
   }
 
   .main-navigation {
     align-items: stretch;
 
     flex-direction: column;
-
-    padding: 6px;
   }
 
   .nav-links {
-    width: 100%;
-
     overflow-x: auto;
-
-    scrollbar-width: none;
-  }
-
-  .nav-links::-webkit-scrollbar {
-    display: none;
   }
 
   .nav-button {
@@ -1065,24 +756,8 @@ footer .container {
     width: 100%;
   }
 
-  .dashboard {
-    gap: 16px;
-  }
-
   .dashboard-stats {
-    gap: 8px;
-  }
-
-  .stat-card {
-    padding: 14px;
-  }
-
-  .stat-value {
-    font-size: 22px;
-  }
-
-  .card {
-    padding: 18px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .task-form {
@@ -1099,51 +774,10 @@ footer .container {
 
   .form-actions {
     flex-direction: column;
-    align-items: stretch;
   }
 
   .form-actions button {
     width: 100%;
-  }
-
-  .delete-button {
-    opacity: 1;
-  }
-
-  .task,
-  .event,
-  .reminder {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  textarea {
-    min-height: 260px;
-  }
-
-}
-
-
-/* =========================================================
-   VERY SMALL SCREENS
-========================================================= */
-
-@media (max-width: 420px) {
-
-  .dashboard-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .filters {
-    overflow-x: auto;
-  }
-
-  .filter-button {
-    flex-shrink: 0;
-  }
-
-  .event {
-    gap: 10px;
   }
 
 }
