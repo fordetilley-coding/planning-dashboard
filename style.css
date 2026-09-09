@@ -1,9 +1,9 @@
-/* =========================
-   DESIGN SYSTEM
-========================= */
+/* =========================================================
+   PLANNING DASHBOARD DESIGN
+========================================================= */
 
 :root {
-  --bg: #f7f8fa;
+  --bg: #f6f7f9;
   --surface: #ffffff;
   --surface-hover: #f9fafb;
 
@@ -12,11 +12,20 @@
   --text-muted: #9ca3af;
 
   --border: #e5e7eb;
+  --border-light: #f0f1f3;
 
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
+  --accent-soft: #eff6ff;
 
   --danger: #dc2626;
+  --danger-soft: #fef2f2;
+
+  --success: #16a34a;
+  --success-soft: #f0fdf4;
+
+  --warning: #d97706;
+  --warning-soft: #fffbeb;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -26,13 +35,13 @@
     0 1px 2px rgba(0, 0, 0, 0.04);
 
   --shadow-md:
-    0 4px 12px rgba(0, 0, 0, 0.06);
+    0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -44,6 +53,7 @@ html {
 
 body {
   margin: 0;
+
   font-family:
     Inter,
     -apple-system,
@@ -57,11 +67,6 @@ body {
   line-height: 1.5;
 }
 
-
-/* =========================
-   ELEMENTS
-========================= */
-
 button,
 input,
 textarea,
@@ -73,6 +78,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
@@ -82,14 +92,18 @@ select:focus-visible {
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 28px 0;
+}
+
+header .container {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 header h1 {
@@ -97,20 +111,22 @@ header h1 {
 
   font-size: 26px;
   font-weight: 700;
-  letter-spacing: -0.5px;
+
+  letter-spacing: -0.6px;
 }
 
 header p {
   margin: 4px 0 0;
 
   color: var(--text-secondary);
+
   font-size: 14px;
 }
 
 
-/* =========================
+/* =========================================================
    CONTAINER
-========================= */
+========================================================= */
 
 .container {
   width: min(1200px, calc(100% - 40px));
@@ -118,26 +134,185 @@ header p {
 }
 
 
-/* =========================
-   DASHBOARD
-========================= */
+/* =========================================================
+   TOP NAVIGATION
+========================================================= */
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+
+  padding: 6px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.nav-button {
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  padding: 8px 12px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.nav-button:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.nav-button.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   QUICK ADD
+========================================================= */
+
+.quick-add-button {
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  background: var(--accent);
+  color: white;
+
+  padding: 9px 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.quick-add-button:hover {
+  background: var(--accent-hover);
+}
+
+.quick-add-button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   VIEWS
+========================================================= */
+
+.app-view {
+  display: none;
+}
+
+.app-view.active {
+  display: block;
+}
+
+
+/* =========================================================
+   DASHBOARD LAYOUT
+========================================================= */
 
 .dashboard {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.7fr)
+    minmax(0, 1.6fr)
     minmax(320px, 1fr);
 
-  gap: 24px;
+  gap: 20px;
 
   align-items: start;
 }
 
+.dashboard-full {
+  grid-column: 1 / -1;
+}
 
-/* =========================
+
+/* =========================================================
+   DASHBOARD STATISTICS
+========================================================= */
+
+.dashboard-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  min-width: 0;
+
+  padding: 18px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  margin-bottom: 6px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: var(--text);
+
+  font-size: 26px;
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
    CARDS
-========================= */
+========================================================= */
 
 .card {
   background: var(--surface);
@@ -145,13 +320,13 @@ header p {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
 
-  padding: 24px;
+  padding: 22px;
 
   box-shadow: var(--shadow-sm);
 }
 
 .card h2 {
-  margin: 0 0 20px;
+  margin: 0 0 18px;
 
   font-size: 17px;
   font-weight: 650;
@@ -159,10 +334,95 @@ header p {
   letter-spacing: -0.2px;
 }
 
+.card h3 {
+  margin: 0;
 
-/* =========================
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+========================================================= */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.section-action {
+  border: none;
+  background: transparent;
+
+  color: var(--accent);
+
+  padding: 4px 0;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.section-action:hover {
+  color: var(--accent-hover);
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+
+/* =========================================================
    TASK FORM
-========================= */
+========================================================= */
 
 .task-form {
   display: grid;
@@ -178,9 +438,9 @@ header p {
 }
 
 
-/* =========================
+/* =========================================================
    INPUTS
-========================= */
+========================================================= */
 
 input,
 select,
@@ -191,19 +451,14 @@ textarea {
   border-radius: var(--radius-sm);
 
   background: var(--surface);
-
   color: var(--text);
 
   padding: 10px 12px;
 
   transition:
     border-color 0.15s,
-    box-shadow 0.15s;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-muted);
+    box-shadow 0.15s,
+    background 0.15s;
 }
 
 input:hover,
@@ -223,10 +478,27 @@ textarea:focus {
   outline: none;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
 
-/* =========================
-   PRIMARY BUTTON
-========================= */
+textarea {
+  display: block;
+
+  min-height: 340px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .primary-button {
   border: none;
@@ -237,6 +509,7 @@ textarea:focus {
 
   padding: 10px 16px;
 
+  font-size: 13px;
   font-weight: 600;
 
   transition:
@@ -252,13 +525,53 @@ textarea:focus {
   transform: translateY(1px);
 }
 
+.secondary-button {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 
-/* =========================
+  background: var(--surface);
+  color: var(--text);
+
+  padding: 9px 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.secondary-button:hover {
+  background: var(--surface-hover);
+  border-color: #d1d5db;
+}
+
+.danger-button {
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+
+  background: var(--danger-soft);
+  color: var(--danger);
+
+  padding: 9px 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.danger-button:hover {
+  background: #fee2e2;
+}
+
+
+/* =========================================================
    FILTERS
-========================= */
+========================================================= */
 
 .filters {
   display: flex;
+
   gap: 4px;
 
   margin: 24px 0 8px;
@@ -269,10 +582,10 @@ textarea:focus {
 .filter-button {
   position: relative;
 
+  border: none;
+
   background: transparent;
   color: var(--text-secondary);
-
-  border: none;
 
   padding: 9px 12px;
 
@@ -305,20 +618,21 @@ textarea:focus {
 }
 
 
-/* =========================
+/* =========================================================
    TASK
-========================= */
+========================================================= */
 
 .task {
   display: flex;
   align-items: center;
+
   gap: 12px;
 
   min-height: 64px;
 
   padding: 12px 4px;
 
-  border-bottom: 1px solid #f0f1f3;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .task:last-child {
@@ -330,9 +644,9 @@ textarea:focus {
 }
 
 
-/* =========================
+/* =========================================================
    TASK CHECKBOX
-========================= */
+========================================================= */
 
 .task > input[type="checkbox"] {
   width: 18px;
@@ -346,9 +660,9 @@ textarea:focus {
 }
 
 
-/* =========================
+/* =========================================================
    TASK CONTENT
-========================= */
+========================================================= */
 
 .task-content {
   flex: 1;
@@ -356,11 +670,15 @@ textarea:focus {
 }
 
 .task-title {
+  overflow: hidden;
+
+  color: var(--text);
+
   font-size: 14px;
   font-weight: 500;
 
-  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .task-meta {
@@ -383,9 +701,9 @@ textarea:focus {
 }
 
 
-/* =========================
+/* =========================================================
    PRIORITY
-========================= */
+========================================================= */
 
 .priority {
   display: inline-flex;
@@ -399,30 +717,33 @@ textarea:focus {
   font-weight: 700;
 
   text-transform: uppercase;
+
   letter-spacing: 0.3px;
 }
 
 .priority.high {
-  background: #fef2f2;
+  background: var(--danger-soft);
   color: #b91c1c;
 }
 
 .priority.medium {
-  background: #fffbeb;
+  background: var(--warning-soft);
   color: #b45309;
 }
 
 .priority.low {
-  background: #f0fdf4;
+  background: var(--success-soft);
   color: #15803d;
 }
 
 
-/* =========================
+/* =========================================================
    DELETE BUTTON
-========================= */
+========================================================= */
 
 .delete-button {
+  flex-shrink: 0;
+
   opacity: 0;
 
   border: none;
@@ -433,42 +754,151 @@ textarea:focus {
 
   padding: 6px 8px;
 
+  font-size: 12px;
+
   transition:
     opacity 0.15s,
     color 0.15s,
     background 0.15s;
 }
 
-.task:hover .delete-button {
+.task:hover .delete-button,
+.event:hover .delete-button,
+.reminder:hover .delete-button {
   opacity: 1;
 }
 
 .delete-button:hover {
-  background: #fef2f2;
+  background: var(--danger-soft);
   color: var(--danger);
 }
 
 
-/* =========================
-   NOTES
-========================= */
+/* =========================================================
+   EVENTS
+========================================================= */
 
-textarea {
-  display: block;
+.event-list,
+.reminder-list {
+  display: flex;
+  flex-direction: column;
+}
 
-  min-height: 340px;
+.event {
+  display: flex;
+  align-items: flex-start;
 
-  resize: vertical;
+  gap: 16px;
 
-  line-height: 1.6;
+  padding: 14px 4px;
+
+  border-bottom: 1px solid var(--border-light);
+}
+
+.event:last-child {
+  border-bottom: none;
+}
+
+.event:hover {
+  background: var(--surface-hover);
+}
+
+.event-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-content h3 {
+  margin: 0;
 
   font-size: 14px;
+  font-weight: 600;
+}
+
+.event-meta {
+  margin-top: 3px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+.event-content p {
+  margin: 7px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
 }
 
 
-/* =========================
-   SAVE STATUS
-========================= */
+/* =========================================================
+   REMINDERS
+========================================================= */
+
+.reminder {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 58px;
+
+  padding: 10px 4px;
+
+  border-bottom: 1px solid var(--border-light);
+}
+
+.reminder:last-child {
+  border-bottom: none;
+}
+
+.reminder:hover {
+  background: var(--surface-hover);
+}
+
+.reminder > input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  margin: 0;
+
+  accent-color: var(--accent);
+}
+
+.reminder-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.reminder-title {
+  overflow: hidden;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reminder-meta {
+  margin-top: 3px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.notes-container {
+  max-width: 900px;
+}
 
 .save-message {
   margin-top: 8px;
@@ -478,40 +908,177 @@ textarea {
   font-size: 11px;
 }
 
+.note-preview {
+  padding: 12px;
 
-/* =========================
-   EMPTY STATE
-========================= */
+  background: var(--surface-hover);
 
-.empty {
-  padding: 40px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.note-preview p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM CARDS
+========================================================= */
+
+.form-card {
+  margin-bottom: 20px;
+}
+
+.form-card[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
+.empty,
+.empty-state {
+  padding: 36px 20px;
+
+  color: var(--text-muted);
+
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0 0 4px;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.empty-state p {
+  margin: 0;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  margin-top: 48px;
+  padding: 24px 0;
+
+  border-top: 1px solid var(--border);
 
   color: var(--text-muted);
 
   text-align: center;
 
-  font-size: 14px;
+  font-size: 12px;
+}
+
+footer .container {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .task-form {
+    grid-template-columns:
+      minmax(0, 1fr)
+      140px
+      110px;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
 
   header {
     padding: 22px 0;
   }
 
+  header h1 {
+    font-size: 22px;
+  }
+
   .container {
     width: min(100% - 24px, 700px);
+
     margin: 20px auto;
   }
 
+  .main-navigation {
+    align-items: stretch;
+
+    flex-direction: column;
+
+    padding: 6px;
+  }
+
+  .nav-links {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-button {
+    flex-shrink: 0;
+  }
+
+  .quick-add-button {
+    width: 100%;
+  }
+
   .dashboard {
-    grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .dashboard-stats {
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-value {
+    font-size: 22px;
   }
 
   .card {
@@ -522,8 +1089,61 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
   .delete-button {
     opacity: 1;
+  }
+
+  .task,
+  .event,
+  .reminder {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  textarea {
+    min-height: 260px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    overflow-x: auto;
+  }
+
+  .filter-button {
+    flex-shrink: 0;
+  }
+
+  .event {
+    gap: 10px;
   }
 
 }
