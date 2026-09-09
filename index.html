@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
@@ -11,8 +15,12 @@
 
   <title>Planning Dashboard</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
@@ -21,638 +29,320 @@
   ========================== -->
 
   <header class="app-header">
-    <div class="container header-content">
 
-      <div>
-        <h1>Planning Dashboard</h1>
-        <p id="currentDate">Loading date...</p>
-      </div>
+    <div class="container">
 
-      <button
-        type="button"
-        class="primary-button"
-        id="quickAddButton"
-        onclick="focusQuickAdd()"
-      >
-        + Quick Add
-      </button>
+      <h1>Planning Dashboard</h1>
+
+      <p id="currentDate">
+        Loading date...
+      </p>
 
     </div>
+
   </header>
 
 
   <!-- =========================
-       MAIN NAVIGATION
-  ========================== -->
-
-  <nav class="main-navigation" aria-label="Main navigation">
-
-    <div class="container navigation-content">
-
-      <button
-        type="button"
-        class="nav-button"
-        data-view="tasks"
-        onclick="showView('tasks')"
-      >
-        Tasks
-      </button>
-
-      <button
-        type="button"
-        class="nav-button"
-        data-view="notes"
-        onclick="showView('notes')"
-      >
-        Notes
-      </button>
-
-      <button
-        type="button"
-        class="nav-button"
-        data-view="events"
-        onclick="showView('events')"
-      >
-        Events
-      </button>
-
-      <button
-        type="button"
-        class="nav-button"
-        data-view="reminders"
-        onclick="showView('reminders')"
-      >
-        Reminders
-      </button>
-
-    </div>
-
-  </nav>
-
-
-  <!-- =========================
-       MAIN APPLICATION
+       MAIN
   ========================== -->
 
   <main class="container">
 
 
     <!-- =========================
-         DASHBOARD VIEW
+         NAVIGATION
     ========================== -->
 
-    <section
-      id="dashboardView"
-      class="app-view active"
-      aria-labelledby="dashboardHeading"
+    <nav
+      class="main-navigation"
+      aria-label="Main navigation"
     >
 
-      <div class="page-heading">
-        <div>
-          <h2 id="dashboardHeading">Dashboard</h2>
-          <p>Your overview for today.</p>
-        </div>
-      </div>
+      <div class="nav-links">
 
+        <button
+          type="button"
+          class="nav-button active"
+          data-view="tasks"
+          onclick="showView('tasks')"
+        >
+          Tasks
+        </button>
 
-      <!-- SUMMARY -->
+        <button
+          type="button"
+          class="nav-button"
+          data-view="notes"
+          onclick="showView('notes')"
+        >
+          Notes
+        </button>
 
-      <div class="summary-grid">
+        <button
+          type="button"
+          class="nav-button"
+          data-view="events"
+          onclick="showView('events')"
+        >
+          Events
+        </button>
 
-        <article class="summary-card">
-          <span class="summary-label">Tasks Today</span>
-
-          <strong
-            id="taskCount"
-            class="summary-value"
-          >
-            0
-          </strong>
-        </article>
-
-
-        <article class="summary-card">
-          <span class="summary-label">Completed</span>
-
-          <strong
-            id="completedTaskCount"
-            class="summary-value"
-          >
-            0
-          </strong>
-        </article>
-
-
-        <article class="summary-card">
-          <span class="summary-label">Upcoming</span>
-
-          <strong
-            id="upcomingCount"
-            class="summary-value"
-          >
-            0
-          </strong>
-        </article>
-
-
-        <article class="summary-card">
-          <span class="summary-label">Reminders</span>
-
-          <strong
-            id="reminderCount"
-            class="summary-value"
-          >
-            0
-          </strong>
-        </article>
+        <button
+          type="button"
+          class="nav-button"
+          data-view="reminders"
+          onclick="showView('reminders')"
+        >
+          Reminders
+        </button>
 
       </div>
 
 
-      <!-- DASHBOARD GRID -->
+      <button
+        type="button"
+        class="quick-add-button"
+        id="quickAddButton"
+        onclick="focusQuickAdd()"
+      >
+        + Add Task
+      </button>
 
-      <div class="dashboard">
-
-
-        <!-- TODAY'S TASKS -->
-
-        <section class="card">
-
-          <div class="card-header">
-
-            <div>
-              <h2>Today's Tasks</h2>
-              <p>What needs your attention today.</p>
-            </div>
-
-            <button
-              type="button"
-              class="text-button"
-              onclick="showView('tasks')"
-            >
-              View All
-            </button>
-
-          </div>
-
-          <div id="dashboardTaskList">
-
-            <div class="empty-state">
-              <h3>No tasks yet</h3>
-              <p>Add a task to get started.</p>
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- UPCOMING EVENTS -->
-
-        <section class="card">
-
-          <div class="card-header">
-
-            <div>
-              <h2>Upcoming Events</h2>
-              <p>Your next scheduled events.</p>
-            </div>
-
-            <button
-              type="button"
-              class="text-button"
-              onclick="showView('events')"
-            >
-              View All
-            </button>
-
-          </div>
-
-          <div id="dashboardEventList">
-
-            <div class="empty-state">
-              <h3>No upcoming events</h3>
-              <p>Your calendar is clear.</p>
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- REMINDERS -->
-
-        <section class="card">
-
-          <div class="card-header">
-
-            <div>
-              <h2>Reminders</h2>
-              <p>Things you don't want to forget.</p>
-            </div>
-
-            <button
-              type="button"
-              class="text-button"
-              onclick="showView('reminders')"
-            >
-              View All
-            </button>
-
-          </div>
-
-          <div id="dashboardReminderList">
-
-            <div class="empty-state">
-              <h3>No reminders</h3>
-              <p>You're all caught up.</p>
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- RECENT NOTES -->
-
-        <section class="card">
-
-          <div class="card-header">
-
-            <div>
-              <h2>Recent Notes</h2>
-              <p>Your latest notes and ideas.</p>
-            </div>
-
-            <button
-              type="button"
-              class="text-button"
-              onclick="showView('notes')"
-            >
-              View Notes
-            </button>
-
-          </div>
-
-          <div id="dashboardNoteList">
-
-            <div class="empty-state">
-              <h3>No notes yet</h3>
-              <p>Start capturing your thoughts.</p>
-            </div>
-
-          </div>
-
-        </section>
-
-      </div>
-
-    </section>
-
+    </nav>
 
 
     <!-- =========================
-         TASKS VIEW
+         TASKS
     ========================== -->
 
     <section
       id="tasksView"
-      class="app-view"
-      aria-labelledby="tasksHeading"
+      class="app-view active"
     >
 
-      <div class="page-heading">
+      <div class="card">
 
-        <div>
-          <h2 id="tasksHeading">Tasks</h2>
-          <p>Manage everything you need to get done.</p>
-        </div>
-
-      </div>
+        <h2>Tasks</h2>
 
 
-      <!-- TASK CREATION -->
-
-      <section
-        class="card"
-        id="quickAdd"
-      >
-
-        <div class="card-header">
-
-          <div>
-            <h2>Add Task</h2>
-            <p>Create a new task.</p>
-          </div>
-
-        </div>
-
-
-        <form
-          class="task-form"
-          id="taskForm"
-          onsubmit="event.preventDefault(); addTask();"
-        >
-
-          <label
-            for="taskInput"
-            class="sr-only"
-          >
-            Task name
-          </label>
+        <div class="task-form">
 
           <input
             id="taskInput"
             type="text"
             placeholder="What needs to be done?"
             autocomplete="off"
-            required
           >
-
-
-          <label
-            for="taskDate"
-            class="sr-only"
-          >
-            Task date
-          </label>
 
           <input
             id="taskDate"
             type="date"
           >
 
-
-          <label
-            for="taskPriority"
-            class="sr-only"
-          >
-            Task priority
-          </label>
-
           <select id="taskPriority">
 
             <option value="low">
-              Low Priority
+              Low
             </option>
 
             <option
               value="medium"
               selected
             >
-              Medium Priority
+              Medium
             </option>
 
             <option value="high">
-              High Priority
+              High
             </option>
 
           </select>
 
+        </div>
+
+
+        <button
+          type="button"
+          class="primary-button"
+          onclick="addTask()"
+        >
+          Add Task
+        </button>
+
+
+        <div class="filters">
 
           <button
-            type="submit"
-            class="primary-button"
+            type="button"
+            class="filter-button active"
+            id="todayFilter"
+            onclick="setFilter('today')"
           >
-            Add Task
+            Today
           </button>
 
-        </form>
-
-      </section>
-
-
-      <!-- TASK LIST -->
-
-      <section class="card">
-
-        <div class="card-header">
-
-          <div>
-            <h2>Your Tasks</h2>
-          </div>
-
-          <div
-            class="filters"
-            role="group"
-            aria-label="Task filters"
+          <button
+            type="button"
+            class="filter-button"
+            id="upcomingFilter"
+            onclick="setFilter('upcoming')"
           >
+            Upcoming
+          </button>
 
-            <button
-              type="button"
-              class="filter-button active"
-              onclick="setFilter('today')"
-              id="todayFilter"
-            >
-              Today
-            </button>
-
-            <button
-              type="button"
-              class="filter-button"
-              onclick="setFilter('upcoming')"
-              id="upcomingFilter"
-            >
-              Upcoming
-            </button>
-
-            <button
-              type="button"
-              class="filter-button"
-              onclick="setFilter('all')"
-              id="allFilter"
-            >
-              All
-            </button>
-
-          </div>
+          <button
+            type="button"
+            class="filter-button"
+            id="allFilter"
+            onclick="setFilter('all')"
+          >
+            All
+          </button>
 
         </div>
 
 
-        <div
-          id="taskList"
-          aria-live="polite"
-        >
+        <div id="taskList"></div>
 
-          <div class="empty-state">
-            <h3>No tasks found</h3>
-            <p>Add a task above to get started.</p>
-          </div>
-
-        </div>
-
-      </section>
+      </div>
 
     </section>
 
 
-
     <!-- =========================
-         NOTES VIEW
+         NOTES
     ========================== -->
 
     <section
       id="notesView"
       class="app-view"
-      aria-labelledby="notesHeading"
     >
 
-      <div class="page-heading">
+      <div class="card notes-container">
 
-        <div>
-          <h2 id="notesHeading">Notes</h2>
-          <p>
-            Capture ideas, information, and anything worth remembering.
-          </p>
-        </div>
-
-      </div>
-
-
-      <section class="card">
-
-        <div class="card-header">
-
-          <div>
-            <h2>Notes</h2>
-            <p>Your notes are saved automatically.</p>
-          </div>
-
-          <span
-            class="save-message"
-            id="saveMessage"
-            aria-live="polite"
-          >
-            Saved
-          </span>
-
-        </div>
-
-
-        <label
-          for="notes"
-          class="sr-only"
-        >
-          Notes
-        </label>
+        <h2>Notes</h2>
 
         <textarea
           id="notes"
           placeholder="Write anything here..."
-          spellcheck="true"
         ></textarea>
 
-      </section>
+        <div
+          class="save-message"
+          id="saveMessage"
+        >
+          Saved
+        </div>
+
+      </div>
 
     </section>
 
 
-
     <!-- =========================
-         EVENTS VIEW
+         EVENTS
     ========================== -->
 
     <section
       id="eventsView"
       class="app-view"
-      aria-labelledby="eventsHeading"
     >
-
-      <div class="page-heading">
-
-        <div>
-          <h2 id="eventsHeading">Events</h2>
-          <p>
-            Keep track of meetings, appointments, and scheduled activities.
-          </p>
-        </div>
-
-        <button
-          type="button"
-          class="primary-button"
-          onclick="showEventForm()"
-        >
-          + Add Event
-        </button>
-
-      </div>
 
 
       <!-- EVENT FORM -->
 
-      <section
-        class="card"
+      <div
+        class="card form-card"
         id="eventFormCard"
         hidden
       >
 
-        <div class="card-header">
-
-          <div>
-            <h2>Add Event</h2>
-          </div>
-
-        </div>
+        <h2>Add Event</h2>
 
 
         <form
           id="eventForm"
-          class="event-form"
           onsubmit="event.preventDefault(); addEvent();"
         >
 
-          <label for="eventTitle">
-            Event name
-          </label>
-
-          <input
-            id="eventTitle"
-            type="text"
-            placeholder="Event name"
-            required
-          >
+          <div class="form-grid">
 
 
-          <label for="eventDate">
-            Date
-          </label>
+            <div class="form-group">
 
-          <input
-            id="eventDate"
-            type="date"
-            required
-          >
+              <label for="eventTitle">
+                Event
+              </label>
 
+              <input
+                id="eventTitle"
+                type="text"
+                placeholder="Event name"
+                required
+              >
 
-          <label for="eventStartTime">
-            Start time
-          </label>
-
-          <input
-            id="eventStartTime"
-            type="time"
-          >
+            </div>
 
 
-          <label for="eventEndTime">
-            End time
-          </label>
+            <div class="form-group">
 
-          <input
-            id="eventEndTime"
-            type="time"
-          >
+              <label for="eventDate">
+                Date
+              </label>
+
+              <input
+                id="eventDate"
+                type="date"
+                required
+              >
+
+            </div>
 
 
-          <label for="eventDescription">
-            Description
-          </label>
+            <div class="form-group">
 
-          <textarea
-            id="eventDescription"
-            placeholder="Optional description..."
-          ></textarea>
+              <label for="eventStartTime">
+                Start
+              </label>
+
+              <input
+                id="eventStartTime"
+                type="time"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="eventEndTime">
+                End
+              </label>
+
+              <input
+                id="eventEndTime"
+                type="time"
+              >
+
+            </div>
+
+
+            <div class="form-group full-width">
+
+              <label for="eventDescription">
+                Description
+              </label>
+
+              <textarea
+                id="eventDescription"
+                placeholder="Optional description..."
+                rows="4"
+              ></textarea>
+
+            </div>
+
+          </div>
 
 
           <div class="form-actions">
@@ -661,7 +351,7 @@
               type="submit"
               class="primary-button"
             >
-              Save Event
+              Add Event
             </button>
 
             <button
@@ -676,117 +366,111 @@
 
         </form>
 
-      </section>
+      </div>
 
 
       <!-- EVENT LIST -->
 
-      <section class="card">
+      <div class="card">
 
-        <div
-          id="eventList"
-          aria-live="polite"
-        >
+        <div class="section-header">
 
-          <div class="empty-state">
-            <h3>No events yet</h3>
-            <p>
-              Add an event to start building your schedule.
-            </p>
-          </div>
+          <h2>Events</h2>
+
+          <button
+            type="button"
+            class="section-action"
+            onclick="showEventForm()"
+          >
+            + Add Event
+          </button>
 
         </div>
 
-      </section>
+        <div
+          id="eventList"
+          class="event-list"
+        ></div>
+
+      </div>
 
     </section>
 
 
-
     <!-- =========================
-         REMINDERS VIEW
+         REMINDERS
     ========================== -->
 
     <section
       id="remindersView"
       class="app-view"
-      aria-labelledby="remindersHeading"
     >
-
-      <div class="page-heading">
-
-        <div>
-          <h2 id="remindersHeading">Reminders</h2>
-          <p>
-            Keep important things from slipping through the cracks.
-          </p>
-        </div>
-
-        <button
-          type="button"
-          class="primary-button"
-          onclick="showReminderForm()"
-        >
-          + Add Reminder
-        </button>
-
-      </div>
 
 
       <!-- REMINDER FORM -->
 
-      <section
-        class="card"
+      <div
+        class="card form-card"
         id="reminderFormCard"
         hidden
       >
 
-        <div class="card-header">
-
-          <div>
-            <h2>Add Reminder</h2>
-          </div>
-
-        </div>
+        <h2>Add Reminder</h2>
 
 
         <form
           id="reminderForm"
-          class="reminder-form"
           onsubmit="event.preventDefault(); addReminder();"
         >
 
-          <label for="reminderTitle">
-            Reminder
-          </label>
-
-          <input
-            id="reminderTitle"
-            type="text"
-            placeholder="What should you remember?"
-            required
-          >
+          <div class="form-grid">
 
 
-          <label for="reminderDate">
-            Date
-          </label>
+            <div class="form-group">
 
-          <input
-            id="reminderDate"
-            type="date"
-            required
-          >
+              <label for="reminderTitle">
+                Reminder
+              </label>
+
+              <input
+                id="reminderTitle"
+                type="text"
+                placeholder="What do you need to remember?"
+                required
+              >
+
+            </div>
 
 
-          <label for="reminderTime">
-            Time
-          </label>
+            <div class="form-group">
 
-          <input
-            id="reminderTime"
-            type="time"
-          >
+              <label for="reminderDate">
+                Date
+              </label>
+
+              <input
+                id="reminderDate"
+                type="date"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="reminderTime">
+                Time
+              </label>
+
+              <input
+                id="reminderTime"
+                type="time"
+              >
+
+            </div>
+
+          </div>
 
 
           <div class="form-actions">
@@ -795,7 +479,7 @@
               type="submit"
               class="primary-button"
             >
-              Save Reminder
+              Add Reminder
             </button>
 
             <button
@@ -810,31 +494,35 @@
 
         </form>
 
-      </section>
+      </div>
 
 
       <!-- REMINDER LIST -->
 
-      <section class="card">
+      <div class="card">
 
-        <div
-          id="reminderList"
-          aria-live="polite"
-        >
+        <div class="section-header">
 
-          <div class="empty-state">
-            <h3>No reminders</h3>
-            <p>
-              Add a reminder when something needs your attention later.
-            </p>
-          </div>
+          <h2>Reminders</h2>
+
+          <button
+            type="button"
+            class="section-action"
+            onclick="showReminderForm()"
+          >
+            + Add Reminder
+          </button>
 
         </div>
 
-      </section>
+        <div
+          id="reminderList"
+          class="reminder-list"
+        ></div>
+
+      </div>
 
     </section>
-
 
   </main>
 
@@ -843,10 +531,10 @@
        FOOTER
   ========================== -->
 
-  <footer class="app-footer">
+  <footer>
 
     <div class="container">
-      <p>Planning Dashboard</p>
+      Planning Dashboard
     </div>
 
   </footer>
@@ -859,4 +547,5 @@
   <script src="app.js"></script>
 
 </body>
+
 </html>
